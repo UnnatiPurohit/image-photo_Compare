@@ -1,15 +1,15 @@
 <template>
   <div>
-    <ImageCompar />
+    <ImageCompare />
   </div>
 </template>
 
 <script>
-import ImageCompar from "@/components/imageCompare/ImageComparisonList";
+import ImageCompare from "@/components/imageCompare/ImageComparisonList";
 
 export default {
   components: {
-    ImageCompar,
+    ImageCompare,
   },
 };
 </script>

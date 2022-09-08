@@ -1,11 +1,11 @@
 <template>
 <div>
-    <div class="container card mb-4" >
+    <div class="container card mb-4">
         <div class="row">
             <div class="col-sm" v-for="{id ,title , url , thumbnailUrl} of categoryArray" :key="id">
                 <div class="card mb-4" style="width: 18rem;">
                     <img class="card-img-top" :src="url" alt="Card image cap">
-                    <div class="card-body" >
+                    <div class="card-body">
                         <h5 class="card-title">{{title}}</h5>
                         <h5 class="card-title">{{id}}</h5>
                         <p class="card-text">{{thumbnailUrl}}</p>
@@ -58,21 +58,18 @@ export default {
     },
     methods: {
         remove(id) {
-              document.getElementById('compare_'+id).style.display = 'block';
-             document.getElementById('remove_'+id).style.display = 'none';
-            if (id == this.arrayStore[0].id) {
-                this.arrayStore.pop(id);
-                this.$toast.add({
-                    severity: 'success',
-                    summary: 'Data Deleted successfully',
-                    life: 3000
-                });
-            } else {
-                this.$toast.add({
-                    severity: 'error',
-                    summary: 'Data Not Found',
-                    life: 3000
-                });
+            document.getElementById('compare_' + id).style.display = 'block';
+            document.getElementById('remove_' + id).style.display = 'none';
+
+            for (let i = 0; i < this.arrayStore.length; i++) {
+                if (id == this.arrayStore[i].id) {
+                    this.arrayStore.splice(i, 1);
+                    this.$toast.add({
+                        severity: 'success',
+                        summary: 'Data Deleted successfully',
+                        life: 3000
+                    });
+                }
             }
         },
         showSuccess() {
@@ -82,7 +79,7 @@ export default {
                 life: 3000
             });
         },
-        compare(id, title, url , thumbnailUrl) {
+        compare(id, title, url, thumbnailUrl) {
             let obj = {};
             obj.id = id;
             obj.title = title;
@@ -90,10 +87,9 @@ export default {
             obj.thumbnailUrl = thumbnailUrl;
 
             this.arrayStore.push(obj);
-            
-             document.getElementById('compare_'+id).style.display = 'none';
-             document.getElementById('remove_'+id).style.display = 'block';
- 
+            console.log(this.arrayStore)
+            document.getElementById('compare_' + id).style.display = 'none';
+            document.getElementById('remove_' + id).style.display = 'block';
 
         },
         imageCompare() {
